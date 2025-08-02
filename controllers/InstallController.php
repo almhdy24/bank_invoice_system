@@ -66,7 +66,7 @@ class InstallController
       ],
       'uploads_dir' => [
         'name' => 'صلاحيات مجلد الرفع',
-        'passed' => $this->checkDirectoryPermissions('public/uploads')
+        'passed' => $this->checkDirectoryPermissions('/uploads')
       ],
       'db_dir' => [
         'name' => 'صلاحيات مجلد قاعدة البيانات',
@@ -132,20 +132,21 @@ class InstallController
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )');
 
-$db->exec('CREATE TABLE IF NOT EXISTS invoices (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,
-    amount REAL NOT NULL,
-    transfer_date TEXT NOT NULL,
-    image_path TEXT,
-    status TEXT NOT NULL DEFAULT "pending",
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id)
-)');
+    $db->exec('CREATE TABLE IF NOT EXISTS invoices (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            amount REAL NOT NULL,
+            transfer_date TEXT NOT NULL,
+            image_path TEXT,
+            notes TEXT,
+            status TEXT NOT NULL DEFAULT "pending",
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users(id)
+        )');
   }
 
   private function createAdminUser($username, $email, $password) {
-  $user = new User();
-  $user->create($username, $password, $email, 'admin');
-}
+    $user = new User();
+    $user->create($username, $password, $email, 'admin');
+  }
 }

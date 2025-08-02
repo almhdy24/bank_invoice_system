@@ -60,10 +60,10 @@ $error = Session::getFlash('error');
         <span class="value"><?= $invoice['status'] ?></span>
       </div>
 
-      <?php if ($invoice['notes']): ?>
+      <?php if (!empty($invoice['notes'])): ?>
       <div class="detail-row">
         <span class="label">ملاحظات:</span>
-        <span class="value"><?= $invoice['notes'] ?></span>
+        <span class="value"><?= htmlspecialchars($invoice['notes']) ?></span>
       </div>
       <?php endif; ?>
 
@@ -75,7 +75,11 @@ $error = Session::getFlash('error');
       <div class="detail-row">
         <span class="label">صورة الفاتورة:</span>
         <div class="value">
-          <img src="/uploads/<?= $invoice['image_path'] ?>" alt="صورة الفاتورة" class="invoice-image">
+          <?php if (!empty($invoice['image_path'])): ?>
+            <img src="/uploads/<?= htmlspecialchars($invoice['image_path']) ?>" alt="صورة الفاتورة" class="invoice-image">
+          <?php else: ?>
+            <span>لا توجد صورة</span>
+          <?php endif; ?>
         </div>
       </div>
     </div>
@@ -99,7 +103,7 @@ $error = Session::getFlash('error');
 
       <div class="form-group">
         <label for="notes">ملاحظات:</label>
-        <textarea id="notes" name="notes"><?= $invoice['notes'] ?? '' ?></textarea>
+        <textarea id="notes" name="notes"><?= isset($invoice['notes']) ? htmlspecialchars($invoice['notes']) : '' ?></textarea>
       </div>
 
       <button type="submit" class="btn">حفظ التغييرات</button>

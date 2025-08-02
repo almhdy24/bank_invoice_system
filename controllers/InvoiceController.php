@@ -78,7 +78,7 @@ class InvoiceController {
       }
 
       // تحقق من صلاحية مجلد الرفع
-      $uploadDir = __DIR__ . '/../../public/uploads/';
+      $uploadDir = __DIR__ . '/../uploads/';
       if (!is_dir($uploadDir) || !is_writable($uploadDir)) {
         // تعليق: مشكلة صلاحية مجلد الرفع
         Session::setFlash('error', 'خطأ: لا يمكن الكتابة في مجلد الصور. يرجى مراجعة صلاحيات المجلد.');
