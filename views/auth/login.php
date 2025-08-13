@@ -1,5 +1,6 @@
 <?php
 $error = Session::getFlash('error');
+$success = Session::getFlash('success');
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +18,11 @@ $error = Session::getFlash('error');
     <?php if ($error): ?>
     <div class="alert alert-error">
       <?= $error ?>
+    </div>
+    <?php endif; ?>
+    <?php if ($success): ?>
+    <div class="alert alert-succes">
+      <?= $success ?>
     </div>
     <?php endif; ?>
 

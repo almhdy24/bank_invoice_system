@@ -80,7 +80,7 @@ class InstallController
   }
 
   private function checkDirectoryPermissions($path) {
-    $fullPath = __DIR__ . '/../../' . $path;
+    $fullPath = __DIR__ . '/../' . $path;
 
     if (!file_exists($fullPath)) {
       @mkdir($fullPath, 0755, true);

@@ -73,7 +73,7 @@ class Config {
       'pdo_sqlite' => extension_loaded('pdo_sqlite'),
       'gd' => extension_loaded('gd'),
       'mbstring' => extension_loaded('mbstring'),
-      'uploads_dir' => is_writable(__DIR__ . '/../uploads'),
+      'uploads_dir' => is_writable(__DIR__ . '/uploads'),
       'db_dir' => is_writable(dirname(self::DB_PATH))
     ];
 
